@@ -3,9 +3,8 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Neon Snake — Classic Arcade Game',
-  description: 'A fast, neon arcade snake game. Grow, survive, and beat your best score.',
-  generator: 'v0.app',
+  title: 'Slither — Neon Snake',
+  description: 'A lightweight browser-based Snake game with keyboard and touch controls.',
   icons: {
     icon: [
       {
