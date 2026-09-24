@@ -1,7 +1,7 @@
 'use client'
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { Pause, Play, RotateCcw, Volume2, VolumeX } from 'lucide-react'
+import { Pause, Play, RotateCcw } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { canChangeDirection, getFood, GRID_SIZE, SCORE_STEP, START_SNAKE, stepSnake, TICK_MS, type Direction, type Point } from '@/lib/snake-game'
 
@@ -19,7 +19,6 @@ export function SnakeGame() {
   const [isPlaying, setIsPlaying] = useState(false)
   const [score, setScore] = useState(0)
   const [best, setBest] = useState(0)
-  const [muted, setMuted] = useState(true)
   const [gameOver, setGameOver] = useState(false)
   const [elapsedSeconds, setElapsedSeconds] = useState(0)
   const directionRef = useRef<Direction>('right')
@@ -162,7 +161,6 @@ export function SnakeGame() {
           <div className="score-row" aria-label="Game statistics">
             <div><span className="metric-label">SCORE</span><strong>{String(score).padStart(4, '0')}</strong></div>
             <div><span className="metric-label">BEST</span><strong>{String(best).padStart(4, '0')}</strong></div>
-            <div className="level-chip"><span className="pulse-dot" aria-hidden="true" /> LEVEL 01</div>
           </div>
 
           <p className="sr-only" aria-live="polite">{status} Score {score}. Best {best}.</p>
@@ -207,14 +205,6 @@ export function SnakeGame() {
                 {isPlaying ? 'PAUSE' : gameOver ? 'RETRY' : 'PLAY'}
               </Button>
               <Button variant="outline" size="icon-lg" aria-label="Restart game" onClick={reset}><RotateCcw /></Button>
-              <Button
-                variant="outline"
-                size="icon-lg"
-                aria-label={muted ? 'Sound is off. Turn sound on' : 'Sound is on. Turn sound off'}
-                onClick={() => setMuted((value) => !value)}
-              >
-                {muted ? <VolumeX /> : <Volume2 />}
-              </Button>
             </div>
           </div>
 
